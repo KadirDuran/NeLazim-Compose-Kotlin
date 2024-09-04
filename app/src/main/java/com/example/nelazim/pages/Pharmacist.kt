@@ -37,7 +37,7 @@ import com.example.nelazim.model.getPharmacys
 import java.util.ArrayList
 
 @Composable
-fun PharmacyStart() {
+fun PharmacyStart( ) {
     val context= LocalContext.current
     val user_data = context.getSharedPreferences("UserData", Context.MODE_PRIVATE)
     var pharmacyList by remember { mutableStateOf(listOf<Pharmacy>()) }
