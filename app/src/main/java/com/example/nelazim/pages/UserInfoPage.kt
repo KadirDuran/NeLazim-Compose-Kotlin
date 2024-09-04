@@ -43,14 +43,14 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.example.nelazim.R
 import com.example.nelazim.model.DataStrict
-import com.example.nelazim.model.getData
+import com.example.nelazim.model.getCityDistrict
 import kotlinx.coroutines.runBlocking
 
 @Composable
 fun UserInfoPage() {
     val data: List<DataStrict>
     runBlocking {
-        data = getData()
+        data = getCityDistrict()
     }
     Column(
         modifier = Modifier

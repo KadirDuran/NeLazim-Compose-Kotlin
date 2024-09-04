@@ -10,7 +10,8 @@ import androidx.compose.ui.Modifier
 import com.example.nelazim.ui.theme.NeLazimTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.nelazim.pages.StartSplashScreen
+import com.example.nelazim.model.getPharmacys
+import kotlinx.coroutines.runBlocking
 
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +34,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
+        runBlocking {
+            getPharmacys("","")
+        }
 }
 
 

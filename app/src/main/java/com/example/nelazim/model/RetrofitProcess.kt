@@ -9,12 +9,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import kotlin.math.log
 
-
-interface GetCityDistrictApi {
-    @GET("data")
-    suspend fun getCityDistrict(): List<DataStrict>
-}
 
 object RetrofitClient {
     private const val BASE_URL = "https://raw.githubusercontent.com/KadirDuran/Il-Ilce-Json/main/"
@@ -27,7 +23,8 @@ object RetrofitClient {
             .create(GetCityDistrictApi::class.java)
     }
 }
-suspend fun getData(): List<DataStrict> {
+
+suspend fun getCityDistrict(): List<DataStrict> {
     return withContext(Dispatchers.IO) {
         try {
             RetrofitClient.apiService.getCityDistrict()
@@ -36,4 +33,43 @@ suspend fun getData(): List<DataStrict> {
             emptyList()
         }
     }
+}
+object RetrofitClient2 {
+    private const val BASE_URL = "https://api.collectapi.com/"
+
+    val instance: GetPharmacy by lazy {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        retrofit.create(GetPharmacy::class.java)
+    }
+}
+fun getPharmacys(district : String,city : String) {
+    val apiService = RetrofitClient2.instance
+    val authHeader = "apikey 1sIfLMfrQ9XdWJHBGRbBS0:4sGBE4gY6MjOgIhTDQUYsB"
+    val call = apiService.getDutyPharmacy(district, city, authHeader)
+
+    call.enqueue(object : Callback<PharmacyApiResponse> {
+        override fun onResponse(call: Call<PharmacyApiResponse>, response: Response<PharmacyApiResponse>) {
+            if (response.isSuccessful) {
+                val apiResponse = response.body()
+                apiResponse?.result?.forEach { pharmacy ->
+                    println("Name: ${pharmacy.name}")
+                    println("District: ${pharmacy.dist}")
+                    println("Address: ${pharmacy.address}")
+                    println("Phone: ${pharmacy.phone}")
+                    println("Location: ${pharmacy.loc}")
+                }
+            } else {
+                println("Response Error Code: ${response.code()}")
+                println("Response Error Body: ${response.errorBody()?.string()}")
+            }
+        }
+
+        override fun onFailure(call: Call<PharmacyApiResponse>, t: Throwable) {
+            println("Network Error: ${t.message}")
+        }
+    })
 }
