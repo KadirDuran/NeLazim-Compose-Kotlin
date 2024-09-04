@@ -52,12 +52,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
+import com.example.nelazim.model.Currency
 import com.example.nelazim.model.GetWeather
 import com.example.nelazim.model.Pharmacy
 import com.example.nelazim.model.Prayer
+import com.example.nelazim.model.getCurrencys
 import com.example.nelazim.model.getPharmacy
 import com.example.nelazim.model.getPrayers
 import com.example.nelazim.pages.PharmacyCardView
+import com.example.nelazim.pages.PrayerCardView
+import com.example.nelazim.pages.StartSplashScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -80,9 +84,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
+   StartSplashScreen()
 }
-
 
 @Preview(showBackground = true)
 @Composable
