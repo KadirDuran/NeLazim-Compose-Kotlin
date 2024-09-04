@@ -68,7 +68,7 @@ fun getWeather(context: Context, data_lang : String, data_city : String, callbac
                 }
                 callback(resultList)
             } else {
-                println("Response Error Body: ${response.errorBody()?.string()}")
+                println("Response Error Bodys: ${response.errorBody()?.string()}")
                 callback(arrayListOf())//liste boş donecek
             }
         }
