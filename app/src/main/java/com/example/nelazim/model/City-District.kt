@@ -19,7 +19,7 @@ interface GetCityDistrictApi {
 }
 
 object RetrofitClient {
-    private const val BASE_URL = "https://raw.githubusercontent.com/KadirDuran/Il-Ilce-Json/main/"
+    private const val BASE_URL = "https://raw.githubusercontent.com/KadirDuran/Data-Json/main/"
 
     val apiService: GetCityDistrictApi by lazy {
         Retrofit.Builder()

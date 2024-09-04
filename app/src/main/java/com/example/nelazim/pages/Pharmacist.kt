@@ -33,9 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
 import com.example.nelazim.model.Pharmacy
-import com.example.nelazim.model.getPharmacys
-import java.util.ArrayList
-
+import com.example.nelazim.model.getPharmacy
 @Composable
 fun PharmacyStart( ) {
     val context= LocalContext.current
@@ -53,7 +51,7 @@ fun PharmacyStart( ) {
             else
             {
                 LaunchedEffect(user_data) {
-                    getPharmacys(context, user_data.getString("ilce", "").toString(), user_data.getString("il", "").toString()) {
+                    getPharmacy(context, user_data.getString("ilce", "").toString(), user_data.getString("il", "").toString()) {
                         pharmacy ->
                         pharmacyList = if (pharmacy.isEmpty()) {
                             emptyList()
@@ -77,7 +75,7 @@ fun PharmacyStart( ) {
 }
 
 @Composable
-fun PharmacyCardView(pharmacy: Pharmacy,) {
+fun PharmacyCardView(pharmacy: Pharmacy) {
     val context = LocalContext.current
     ElevatedCard(
         shape = RoundedCornerShape(50.dp, 25.dp, 50.dp, 25.dp),

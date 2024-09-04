@@ -54,13 +54,10 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.example.nelazim.model.GetWeather
 import com.example.nelazim.model.Pharmacy
-import com.example.nelazim.model.Result
-import com.example.nelazim.model.getPharmacys
-import com.example.nelazim.model.getWeather
+import com.example.nelazim.model.Prayer
+import com.example.nelazim.model.getPharmacy
+import com.example.nelazim.model.getPrayers
 import com.example.nelazim.pages.PharmacyCardView
-import com.example.nelazim.pages.PharmacyStart
-import com.example.nelazim.pages.UserInfoPage
-import kotlinx.coroutines.runBlocking
 
 
 class MainActivity : ComponentActivity() {
@@ -83,7 +80,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
 
 }
 

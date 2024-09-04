@@ -44,7 +44,7 @@ object RetrofitClientPharmacy {
         retrofit.create(GetPharmacy::class.java)
     }
 }
-fun getPharmacys(context: Context, district : String, city : String, callback: (ArrayList<Pharmacy>) -> Unit){
+fun getPharmacy(context: Context, district : String, city : String, callback: (ArrayList<Pharmacy>) -> Unit){
     val apiService = RetrofitClientPharmacy.instance
     val call = apiService.getDutyPharmacy(district, city,context.getString(R.string.API_KEY))
     val pharmacyList = arrayListOf<Pharmacy>()
