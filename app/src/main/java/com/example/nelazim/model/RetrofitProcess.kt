@@ -48,7 +48,7 @@ object RetrofitClient2 {
 }
 fun getPharmacys(district : String,city : String) {
     val apiService = RetrofitClient2.instance
-    val authHeader = "apikey 1sIfLMfrQ9XdWJHBGRbBS0:4sGBE4gY6MjOgIhTDQUYsB"
+    val authHeader = "apikey **************"
     val call = apiService.getDutyPharmacy(district, city, authHeader)
 
     call.enqueue(object : Callback<PharmacyApiResponse> {
