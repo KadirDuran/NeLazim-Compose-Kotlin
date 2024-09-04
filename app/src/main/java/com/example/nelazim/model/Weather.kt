@@ -75,7 +75,7 @@ fun getWeather(context: Context, data_lang : String, data_city : String, callbac
 
         override fun onFailure(call: Call<WheatherApiResponse>, t: Throwable) {
             println("Network Error: ${t.message}")
-            callback(arrayListOf()) //liste boş donecek
+            callback(arrayListOf()) //liste boşs donecek
         }
     })
 
