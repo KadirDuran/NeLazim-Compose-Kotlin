@@ -1,6 +1,7 @@
 package com.example.nelazim.data.repository
 
 import android.content.Context
+import androidx.compose.ui.text.toLowerCase
 import com.example.nelazim.data.model.Prayer
 import com.example.nelazim.data.model.PrayerApiResponse
 import com.example.nelazim.data.network.CollectApi
@@ -11,9 +12,8 @@ import retrofit2.Response
 
 fun getPrayers(context: Context, city : String, callback: (ArrayList<Prayer>) -> Unit){
     val apiService = CollectApi.instance
-    val call = apiService.getPrayer(city,context.getString(R.string.API_KEY))
+    val call = apiService.getPrayer(city.toLowerCase(),context.getString(R.string.API_KEY))
     val prayerList = arrayListOf<Prayer>()
-
     call.enqueue(object : Callback<PrayerApiResponse> {
 
         override fun onResponse(call: Call<PrayerApiResponse>, response: Response<PrayerApiResponse>) {

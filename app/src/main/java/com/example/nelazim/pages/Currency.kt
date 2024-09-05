@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,46 +30,40 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Currency
 import com.example.nelazim.data.repository.getCurrencys
 
 @Composable
-fun CurrencyStart(){
-    val context= LocalContext.current
-    val user_data = context.getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("il","")
+fun CurrencyStart(navController: NavController) {
+    val context = LocalContext.current
+    val user_data =
+        context.getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("il", "")
     var currencyList by remember { mutableStateOf(listOf<Currency>()) }
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            if (user_data == "")
-            {
-                Toast.makeText(context,"Şehir ve ilçe bilgileriniz kaydetmeniz gerekli! Sizi yönlendiriyorum.",
-                    Toast.LENGTH_LONG).show()
-                //Yönlendirme olacak
-            }
-            else
-            {
-                LaunchedEffect(user_data) {
-                    getCurrencys(context) {
-                            currency ->
-                        currencyList = if (currency.isEmpty()) {
-                            emptyList()
-                        } else {
-                            currency
-                        }
-                    }
-                }
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    items(currencyList){
-                        CurrencyCardView(it)
-                    }
-                }
 
+            LaunchedEffect(user_data) {
+                getCurrencys(context) { currency ->
+                    currencyList = if (currency.isEmpty()) {
+                        emptyList()
+                    } else {
+                        currency
+                    }
+                }
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                items(currencyList) {
+                    CurrencyCardView(it)
+                }
             }
         }
     }
@@ -95,7 +90,7 @@ fun CurrencyCardView(currency: Currency) {
                 .background(colorResource(id = R.color.cardBgPurple))
         ) {
             Text(
-                text =currency.name,
+                text = currency.name,
                 color = colorResource(id = R.color.white),
                 textAlign = TextAlign.Center,
                 modifier = Modifier

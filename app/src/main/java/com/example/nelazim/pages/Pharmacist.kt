@@ -31,12 +31,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Pharmacy
 import com.example.nelazim.data.repository.getPharmacy
 
 @Composable
-fun PharmacyStart( ) {
+fun PharmacyStart(navController: NavController ) {
     val context= LocalContext.current
     val user_data = context.getSharedPreferences("UserData", Context.MODE_PRIVATE)
     var pharmacyList by remember { mutableStateOf(listOf<Pharmacy>()) }
@@ -44,13 +45,7 @@ fun PharmacyStart( ) {
         .fillMaxSize()
         .background(Color.White)) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            if (user_data.getString("il", "") == "")
-            {
-               Toast.makeText(context,"Şehir ve ilçe bilgileriniz kaydetmeniz gerekli! Sizi yönlendiriyorum.",Toast.LENGTH_LONG).show()
-                //Yönlendirme olacak
-            }
-            else
-            {
+
                 LaunchedEffect(user_data) {
                     getPharmacy(context, user_data.getString("ilce", "").toString(), user_data.getString("il", "").toString()) {
                         pharmacy ->
@@ -69,8 +64,6 @@ fun PharmacyStart( ) {
                         PharmacyCardView(pharmacy = it)
                     }
                 }
-
-            }
         }
     }
 }
@@ -116,6 +109,7 @@ fun PharmacyCardView(pharmacy: Pharmacy) {
                 )
             }
             Text(
+                color = colorResource(id = R.color.white),
                 text = "Adres Bilgisi :\n${pharmacy.address}",
                 modifier = Modifier.padding(20.dp,10.dp,20.dp,0.dp)
             )
@@ -138,7 +132,7 @@ fun PharmacyCardView(pharmacy: Pharmacy) {
                             contentDescription = null,
                             tint = Color.White
                         )
-                        Text(text = pharmacy.phone)
+                        Text(text = pharmacy.phone,color = colorResource(id = R.color.white))
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -149,7 +143,7 @@ fun PharmacyCardView(pharmacy: Pharmacy) {
                             contentDescription = "null",
                             tint = Color.White
                         )
-                        Text(text = "Haritada Göster")
+                        Text(text = "Haritada Göster",color = colorResource(id = R.color.white))
                     }
 
                 }

@@ -25,22 +25,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Service_Info
 
 @Composable
-fun StartSplashScreen()
+fun SplashScreenStart(navController: NavController)
 {
     val se = ArrayList<Service_Info>()
-    se.add(Service_Info(1,"Hava Durumu", R.drawable.weather))
-    se.add(Service_Info(2,"Nöbetçi Eczaneler", R.drawable.pharmacist))
-    se.add(Service_Info(3,"Namaz Vakitleri", R.drawable.mosque))
-    se.add(Service_Info(4,"Döviz Fiyatları", R.drawable.currency))
-    ServiceCatalogCreate(serviceInfo = se)
+    se.add(Service_Info("WeatherPageStart","Hava Durumu", R.drawable.weather))
+    se.add(Service_Info("PharmacyStart","Nöbetçi Eczaneler", R.drawable.pharmacist))
+    se.add(Service_Info("PrayerStart","Namaz Vakitleri", R.drawable.mosque))
+    se.add(Service_Info("CurrencyStart","Döviz Fiyatları", R.drawable.currency))
+    ServiceCatalogCreate(serviceInfo = se, navController = navController)
 }
 
 @Composable
-fun ServiceCatalogCreate(serviceInfo: ArrayList<Service_Info>) {
+fun ServiceCatalogCreate(serviceInfo: ArrayList<Service_Info>,navController: NavController) {
     val context = LocalContext.current
 
     Column(
@@ -51,7 +52,7 @@ fun ServiceCatalogCreate(serviceInfo: ArrayList<Service_Info>) {
     ) {
         LazyColumn( modifier = Modifier.fillMaxWidth()) {
             items(serviceInfo){
-                CardCreate(serviceInfo = it, context = context)
+                CardCreate(serviceInfo = it, context = context, navController = navController)
             }
         }
 
@@ -61,7 +62,7 @@ fun ServiceCatalogCreate(serviceInfo: ArrayList<Service_Info>) {
 }
 
 @Composable
-fun CardCreate(serviceInfo: Service_Info, context: Context)
+fun CardCreate(serviceInfo: Service_Info, context: Context,navController: NavController)
 {
     ElevatedCard(shape = RoundedCornerShape(50.dp, 25.dp, 50.dp, 25.dp),
         modifier = Modifier
@@ -72,7 +73,7 @@ fun CardCreate(serviceInfo: Service_Info, context: Context)
             containerColor = colorResource(id = R.color.cardBgPurple)
         ),
         onClick = {
-            Toast.makeText(context, "Redirect : " + serviceInfo.id, Toast.LENGTH_LONG).show()
+            navController.navigate(serviceInfo.navigateAdress)
         }
     ) {
         Column(

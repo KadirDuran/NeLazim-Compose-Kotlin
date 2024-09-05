@@ -1,3 +1,3 @@
 package com.example.nelazim.data.model
 
-data class Service_Info(val id:Int,val title:String,val imgId:Int)
+data class Service_Info(val navigateAdress:String,val title:String,val imgId:Int)

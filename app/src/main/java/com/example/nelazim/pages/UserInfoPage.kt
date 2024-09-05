@@ -37,18 +37,17 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import androidx.navigation.NavController
 import com.example.nelazim.R
 import com.example.nelazim.data.model.DataStrict
 import com.example.nelazim.data.repository.getCityDistrict
-import com.example.nelazim.ui.theme.NeLazimTheme
 import kotlinx.coroutines.runBlocking
 
 @Composable
-fun UserInfoPage(modifier: Modifier) {
+fun UserInfoPageStart(navController: NavController,modifier: Modifier) {
     val data: List<DataStrict>
     runBlocking {
         data = getCityDistrict()
@@ -75,6 +74,7 @@ fun UserInfoPage(modifier: Modifier) {
             )
         }
         val valueList: List<String> = data.map { it.il }
+
         var districtList by remember { mutableStateOf<List<String>>(listOf()) }
         var expanded by remember { mutableStateOf(false) }
         var selectedText by remember { mutableStateOf("") }
@@ -215,6 +215,8 @@ fun UserInfoPage(modifier: Modifier) {
                 editor.putString("il", selectedText)
                 editor.putString("ilce", selectedText2)
                 editor.apply()
+                Toast.makeText(contex,"Bilgileriniz kayıt edildi.Sizi anasayfaya yönlendiriyorum.",Toast.LENGTH_LONG).show()
+                navController.navigate("StartSplashScreen")
             } else {
                 Toast.makeText(contex, "İl ve ilçe seçmelisiniz!", Toast.LENGTH_LONG).show()
             }
@@ -228,7 +230,7 @@ fun UserInfoPage(modifier: Modifier) {
         ) {
             Button(
                 onClick = {
-                    SaveInfo()
+                   SaveInfo()
                 },
                 shape = RoundedCornerShape(25.dp, 5.dp, 25.dp, 5.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -242,13 +244,5 @@ fun UserInfoPage(modifier: Modifier) {
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NeLazimTheme {
-        UserInfoPage(modifier = Modifier.background(Color.White))
     }
 }

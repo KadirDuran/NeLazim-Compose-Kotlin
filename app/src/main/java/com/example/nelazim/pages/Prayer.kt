@@ -29,11 +29,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Prayer
 import com.example.nelazim.data.repository.getPrayers
 @Composable
-fun PrayerStart(){
+fun PrayerStart(navController: NavController){
     val context= LocalContext.current
     val user_data = context.getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("il","")
     var prayerList by remember { mutableStateOf(listOf<Prayer>()) }
@@ -41,14 +42,7 @@ fun PrayerStart(){
         .fillMaxSize()
         .background(Color.White)) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            if (user_data == "")
-            {
-                Toast.makeText(context,"Şehir ve ilçe bilgileriniz kaydetmeniz gerekli! Sizi yönlendiriyorum.",
-                    Toast.LENGTH_LONG).show()
-                //Yönlendirme olacak
-            }
-            else
-            {
+
                 LaunchedEffect(user_data) {
                     getPrayers(context, user_data.toString()) {
                             prayer ->
@@ -68,8 +62,6 @@ fun PrayerStart(){
                             PrayerCardView(prayer = it,user_data.toString())
                     }
                 }
-
-            }
         }
     }
 }

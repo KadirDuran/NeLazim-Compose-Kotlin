@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Result
@@ -38,7 +39,7 @@ import com.example.nelazim.data.repository.getWeather
 
 
 @Composable
-fun WeatherPageStart()
+fun WeatherPageStart(navController: NavController)
 {
     val context= LocalContext.current
     val user_data = context.getSharedPreferences("UserData", Context.MODE_PRIVATE)
