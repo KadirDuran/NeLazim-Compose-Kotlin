@@ -37,7 +37,7 @@ fun Screens() {
     val context = LocalContext.current
     val firstPage: String
     if (context.getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("il", "") == "") {
-        firstPage = "UserInfoPage"
+        firstPage = "UserInfoPageStart"
     } else {
         firstPage = "SplashScreenStart"
     }
