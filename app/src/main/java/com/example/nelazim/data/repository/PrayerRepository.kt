@@ -12,7 +12,8 @@ import retrofit2.Response
 
 fun getPrayers(context: Context, city : String, callback: (ArrayList<Prayer>) -> Unit){
     val apiService = CollectApi.instance
-    val call = apiService.getPrayer(city.toLowerCase(),context.getString(R.string.API_KEY))
+    val citys:String = city.toLowerCase()
+    val call = apiService.getPrayer(citys,context.getString(R.string.API_KEY))
     val prayerList = arrayListOf<Prayer>()
     call.enqueue(object : Callback<PrayerApiResponse> {
 

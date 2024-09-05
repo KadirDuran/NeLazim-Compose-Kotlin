@@ -216,7 +216,7 @@ fun UserInfoPageStart(navController: NavController,modifier: Modifier) {
                 editor.putString("ilce", selectedText2)
                 editor.apply()
                 Toast.makeText(contex,"Bilgileriniz kayıt edildi.Sizi anasayfaya yönlendiriyorum.",Toast.LENGTH_LONG).show()
-                navController.navigate("StartSplashScreen")
+                navController.navigate("SplashScreenStart")
             } else {
                 Toast.makeText(contex, "İl ve ilçe seçmelisiniz!", Toast.LENGTH_LONG).show()
             }
