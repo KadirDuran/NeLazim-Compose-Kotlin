@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -30,8 +30,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
-import com.example.nelazim.model.Currency
-import com.example.nelazim.model.getCurrencys
+import com.example.nelazim.data.model.Currency
+import com.example.nelazim.data.model.getCurrencys
 
 @Composable
 fun CurrencyStart(){
@@ -60,7 +60,7 @@ fun CurrencyStart(){
                         }
                     }
                 }
-                LazyColumn(
+                LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
                 ) {

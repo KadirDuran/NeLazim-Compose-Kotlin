@@ -1,51 +1,16 @@
-package com.example.nelazim.model
+package com.example.nelazim.data.repository
 
 import android.content.Context
+import com.example.nelazim.data.model.Pharmacy
+import com.example.nelazim.data.model.PharmacyApiResponse
+import com.example.nelazim.data.network.CollectApi
 import com.example.nelazim.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
 
-
-data class PharmacyApiResponse(
-    val success: Boolean,
-    val result: List<Pharmacy>
-)
-
-data class Pharmacy(
-    val name: String,
-    val dist: String,
-    val address: String,
-    val phone: String,
-    val loc: String
-)
-interface GetPharmacy {
-    @GET("health/dutyPharmacy")
-    fun getDutyPharmacy(
-        @Query("ilce") ilce: String,
-        @Query("il") il: String,
-        @Header("authorization") authHeader: String
-    ): Call<PharmacyApiResponse>
-}
-object RetrofitClientPharmacy {
-    private const val BASE_URL = "https://api.collectapi.com/"
-
-    val instance: GetPharmacy by lazy {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        retrofit.create(GetPharmacy::class.java)
-    }
-}
 fun getPharmacy(context: Context, district : String, city : String, callback: (ArrayList<Pharmacy>) -> Unit){
-    val apiService = RetrofitClientPharmacy.instance
+    val apiService = CollectApi.instance
     val call = apiService.getDutyPharmacy(district, city,context.getString(R.string.API_KEY))
     val pharmacyList = arrayListOf<Pharmacy>()
 
@@ -72,4 +37,3 @@ fun getPharmacy(context: Context, district : String, city : String, callback: (A
     })
 
 }
-

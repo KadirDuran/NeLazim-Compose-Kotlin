@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -42,10 +41,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
-import com.example.nelazim.Greeting
 import com.example.nelazim.R
-import com.example.nelazim.model.DataStrict
-import com.example.nelazim.model.getCityDistrict
+import com.example.nelazim.data.model.DataStrict
+import com.example.nelazim.data.model.getCityDistrict
 import com.example.nelazim.ui.theme.NeLazimTheme
 import kotlinx.coroutines.runBlocking
 

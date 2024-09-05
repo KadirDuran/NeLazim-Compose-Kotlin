@@ -26,7 +26,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
-import com.example.nelazim.model.Service_Info
+import com.example.nelazim.data.model.Service_Info
 
 @Composable
 fun StartSplashScreen()
@@ -61,7 +61,7 @@ fun ServiceCatalogCreate(serviceInfo: ArrayList<Service_Info>) {
 }
 
 @Composable
-fun CardCreate(serviceInfo: Service_Info,context: Context)
+fun CardCreate(serviceInfo: Service_Info, context: Context)
 {
     ElevatedCard(shape = RoundedCornerShape(50.dp, 25.dp, 50.dp, 25.dp),
         modifier = Modifier

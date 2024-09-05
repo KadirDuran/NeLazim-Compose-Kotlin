@@ -30,8 +30,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
-import com.example.nelazim.model.Prayer
-import com.example.nelazim.model.getPrayers
+import com.example.nelazim.data.model.Prayer
+import com.example.nelazim.data.model.getPrayers
 @Composable
 fun PrayerStart(){
     val context= LocalContext.current
@@ -75,7 +75,7 @@ fun PrayerStart(){
 }
 
 @Composable
-fun PrayerCardView(prayer: Prayer,info:String) {
+fun PrayerCardView(prayer: Prayer, info:String) {
     ElevatedCard(
         shape = RoundedCornerShape(50.dp, 25.dp, 50.dp, 25.dp),
         modifier = Modifier

@@ -32,8 +32,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
-import com.example.nelazim.model.Pharmacy
-import com.example.nelazim.model.getPharmacy
+import com.example.nelazim.data.model.Pharmacy
+import com.example.nelazim.data.model.getPharmacy
 @Composable
 fun PharmacyStart( ) {
     val context= LocalContext.current
