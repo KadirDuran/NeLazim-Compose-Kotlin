@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Result
-import com.example.nelazim.data.model.getWeather
+import com.example.nelazim.data.repository.getWeather
 
 
 @Composable

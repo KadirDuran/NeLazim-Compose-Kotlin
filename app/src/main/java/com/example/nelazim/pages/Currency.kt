@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.nelazim.R
 import com.example.nelazim.data.model.Currency
-import com.example.nelazim.data.model.getCurrencys
+import com.example.nelazim.data.repository.getCurrencys
 
 @Composable
 fun CurrencyStart(){

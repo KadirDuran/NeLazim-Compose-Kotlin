@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
 import com.example.nelazim.R
 import com.example.nelazim.data.model.DataStrict
-import com.example.nelazim.data.model.getCityDistrict
+import com.example.nelazim.data.repository.getCityDistrict
 import com.example.nelazim.ui.theme.NeLazimTheme
 import kotlinx.coroutines.runBlocking
 
